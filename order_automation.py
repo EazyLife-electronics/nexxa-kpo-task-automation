@@ -26,8 +26,10 @@ ROUTES = {
     "new_order": f"{BASE_URL}/pre-orders/new-order",
 }
 
-USERNAME = "biodunkpo"
-PASSWORD = "KPO@8910"
+USERNAME = os.getenv("NEXXA_USERNAME")
+PASSWORD = os.getenv("NEXXA_PASSWORD")
+#USERNAME = "biodunkpo"
+#PASSWORD = "KPO@8910"
 ORDER_URL_KEYWORD = "/pre-orders/new-order"
 DASHBOARD_URL_KEYWORD = "/dashboard"
 LOGIN_FORM_SELECTOR = "input[name='username']"
@@ -86,6 +88,12 @@ def login(page):
         return
 
     log("Performing login")
+
+    if not USERNAME or not PASSWORD:
+        raise RuntimeError(
+            "Missing credentials. Set NEXXA_USERNAME and NEXXA_PASSWORD "
+            "as environment variables before running."
+        )
 
     page.fill("input[name='username']", USERNAME)
     page.fill("input[name='password']", PASSWORD)
