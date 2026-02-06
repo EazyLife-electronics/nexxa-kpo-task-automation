@@ -203,7 +203,8 @@ def load_orders_from_excel(path="orders.xlsx"):
         })
 
     print(f"[INFO] Loaded {len(orders)} orders from Excel")
-    print(f"Order {order_id} | {sales_rep} | {outlet} | Product: {product} | Qty: {qty} | Unit: {unit}")
+    #print(f"Order {order_id} | {sales_rep} | {outlet} | Product: {product} | Qty: {qty} | Unit: {unit}")
+    print(f"[DEBUG] Loaded order {order_id} with {len(orders[order_id]['products'])} items")
 
     return list(orders.values())
 
